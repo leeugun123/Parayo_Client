@@ -55,11 +55,16 @@ dependencies {
     implementation "org.jetbrains.anko:anko-constraint-layout:$anko_version"
     implementation "androidx.constraintlayout:constraintlayout:2.0.0-beta2"
 
-
     //retrofit과 관련된 의존성 추가
+    //noinspection GradleDependency
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    //noinspection GradleDependency
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
     implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
-    implementation "com.squareup.okhttp3:logging-intercepter:$okhttp_version"
-    
+
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.10.0'
+    //noinspection GradleDependency
+
+
+
 }
