@@ -16,12 +16,11 @@
 
         <activity
             android:name=".intro.IntroActivity"
-            android:exported="false"
-            tools:ignore="AppLinkUrlError">
+            android:exported="true">
 
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <action android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
 
         </activity>
