@@ -33,6 +33,7 @@ android {
 }
 
 ext{
+    arch_version = '2.2.0-alpha01'
     anko_version = '0.10.8'
     retrofit_version = '2.6.0'
     okhttp_version = '3.8.0'
@@ -66,5 +67,10 @@ dependencies {
     //noinspection GradleDependency
 
 
+    //MVVM model
+    implementation "androidx.lifecycle:lifecycle-extensions:$arch_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$arch_version"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$arch_version"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$arch_version"
 
 }
