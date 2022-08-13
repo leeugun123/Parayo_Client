@@ -1,7 +1,10 @@
 package com.example.parayo.api
 
 import com.example.parayo.api.response.ApiResponse
+import com.example.parayo.request.SignupRequest
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.POST
 
 interface ParayoApi {
 
@@ -9,10 +12,15 @@ interface ParayoApi {
     @GET("/api/v1/hello")// get메소드로 해당 URL를 호출
     suspend fun hello(): ApiResponse<String> //2
 
+    @POST("/api/v1/users")
+    suspend fun signup(@Body signupRequest: SignupRequest)
+        : ApiResponse<Void>
+
     companion object{
 
         //2
         val instance = ApiGenerator()
             .generate(ParayoApi::class.java)
+
     }
 }

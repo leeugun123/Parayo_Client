@@ -30,6 +30,9 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    dataBinding{
+        enabled = true
+    }
 }
 
 ext{
@@ -66,11 +69,15 @@ dependencies {
     implementation 'com.squareup.okhttp3:logging-interceptor:4.10.0'
     //noinspection GradleDependency
 
-
     //MVVM model
     implementation "androidx.lifecycle:lifecycle-extensions:$arch_version"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$arch_version"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$arch_version"
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$arch_version"
+
+    //ankomvvm이 import 되지 않아 추가적으로 추가함
+    implementation 'com.github.benimario:ankomvvm:0.1.0'
+
+
 
 }
