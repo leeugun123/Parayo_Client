@@ -49,6 +49,17 @@ class SignupActivityUI(
 
             textInputLayout {
                 textInputEditText {
+                    hint = "Name"
+                    setSingleLine()
+                    bindString(ui.owner, viewModel.name)
+                }
+            }.lparams(width = matchParent) {
+                bottomMargin = dip(20)
+            }
+
+
+            textInputLayout {
+                textInputEditText {
                     hint = "password"
                     setSingleLine()
                     inputType = InputType.TYPE_CLASS_TEXT or
