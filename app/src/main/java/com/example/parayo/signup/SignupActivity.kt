@@ -15,6 +15,7 @@ class SignupActivity : BaseActivity<SignupViewModel>(){
             .setContentView(this)
 
 
+
     }
 
 }
