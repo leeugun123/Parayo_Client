@@ -1,27 +1,38 @@
 package com.example.parayo.product
 
+import android.app.usage.UsageEvents.Event.NONE
 import android.view.Gravity
+import android.view.MenuItem
 import android.view.MenuItem.SHOW_AS_ACTION_ALWAYS
+import android.view.View
 import android.widget.Toolbar
+import androidx.drawerlayout.widget.DrawerLayout
 import com.example.parayo.R
+import com.example.parayo.common.Prefs
+import com.example.parayo.signin.SigninActivity
 import com.example.parayo.view.borderBottom
+import com.google.android.material.navigation.NavigationView
 import org.jetbrains.anko.*
 import org.jetbrains.anko.AnkoComponent
 import org.jetbrains.anko.AnkoContext
+import org.jetbrains.anko.design._BottomNavigationView
 import org.jetbrains.anko.design.navigationView
 import org.jetbrains.anko.support.v4.drawerLayout
 
-class ProductMainUI(private val viewModel: ProductMainViewModel) : AnkoComponent<ProductMainActivity> {
+class ProductMainUI(private val viewModel: ProductMainViewModel
+) : AnkoComponent<ProductMainActivity>,
+    NavigationView.OnNavigationItemSelectedListener{
 
-    lateinit var toolbar: Toolbar
-
+        lateinit var drawerLayout : DrawerLayout
+        lateinit var navigationView: NavigationView
+        lateinit var toolBar : Toolbar
 
     override fun createView(ui: AnkoContext<ProductMainActivity>) =
 
         ui.drawerLayout {
 
             verticalLayout {
-              toolbar =  toolbar{
+                toolBar =  toolbar{
                     title = "Parayo"
                     bottomPadding = dip(1)
                     background = borderBottom(width = dip(1))
@@ -33,16 +44,48 @@ class ProductMainUI(private val viewModel: ProductMainViewModel) : AnkoComponent
             }.lparams(matchParent, matchParent)
 
 
-            navigationView {
+            navigationView  = navigationView {
                 ProductMainNavHeader()
                     .createView(AnkoContext.create(context,this))
-                    .run(::addHeaderView)
+                    .let(::addHeaderView)
+
+                menu.apply {
+                    add(NONE,MENU_ID_INQUIRY,NONE,"내 문의").apply {
+                        setIcon(R.drawable.ic_baseline_chat_24)
+                    }
+                    add(NONE,MENU_ID_LOGOUT,NONE,"로그아웃").apply {
+                        setIcon(R.drawable.ic_baseline_logout)
+                    }
+                }
+
+                setNavigationItemSelectedListener(this@ProductMainUI)
             }.lparams(wrapContent, matchParent){
                 gravity = Gravity.LEFT
             }
-
-
         }
 
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
 
-}
+        when(item.itemId){
+            MENU_ID_INQUIRY -> {viewModel.toast("내 문의")}
+            MENU_ID_LOGOUT -> {
+                Prefs.token = null
+                Prefs.refreshToken = null
+                viewModel.startActivityAndFinish<SigninActivity>()
+            }
+        }
+
+        drawerLayout.closeDrawer(navigationView)
+
+        return true
+    }
+
+
+    companion object{
+        private const val MENU_ID_INQUIRY = 1
+        private const val MENU_ID_LOGOUT  = 2
+    }
+
+
+
+    }
