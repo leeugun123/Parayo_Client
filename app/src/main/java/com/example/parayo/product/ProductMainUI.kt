@@ -34,6 +34,9 @@ class ProductMainUI(private val viewModel: ProductMainViewModel) : AnkoComponent
 
 
             navigationView {
+                ProductMainNavHeader()
+                    .createView(AnkoContext.create(context,this))
+                    .run(::addHeaderView)
             }.lparams(wrapContent, matchParent){
                 gravity = Gravity.LEFT
             }
