@@ -15,7 +15,6 @@ class ProductRegistrationActivity : BaseActivity<ProductRegistrationViewModel>()
             .setContentView(this)
 
 
-
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = "상품 등록"
 
