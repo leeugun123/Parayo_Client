@@ -90,6 +90,8 @@ class ProductRegistrationViewModel (app : Application) :
             when(requestCode){
                 REQUEST_PICK_IMAGES -> data?.let{uploadImage(it)}
             }
+
+
     }
 
     private fun uploadImage(intent : Intent) =

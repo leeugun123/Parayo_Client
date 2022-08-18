@@ -78,5 +78,8 @@ dependencies {
     //ankomvvm이 import 되지 않아 추가적으로 추가함
     implementation 'com.github.benimario:ankomvvm:0.1.0'
 
+    //Glide library
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
+
 
 }
