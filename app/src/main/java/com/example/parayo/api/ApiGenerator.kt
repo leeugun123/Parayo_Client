@@ -14,13 +14,32 @@ class ApiGenerator {
         .build()
         .create(api)
 
+    fun <T> generateRefreshClient(api : Class<T>) : T = Retrofit.Builder()
+        .baseUrl(HOST)
+        .addConverterFactory(GsonConverterFactory.create())
+        .client(refreshClient())
+        .build()
+        .create(api)
+
 
     //Retrofit과 연계할 HTTP 통신 객체를 생성하는 함수
     private fun httpClient() =
 
         OkHttpClient.Builder().apply {
+
             addInterceptor(httpLoggingIntercepter())
+            addInterceptor(ApiTokenInterceptor())
+            authenticator(TokenAuthenticator())
+
         }.build()
+
+
+    private fun refreshClient() =
+            OkHttpClient.Builder().apply {
+                addInterceptor(httpLoggingIntercepter())
+                addInterceptor(TokenRefreshInterceptor())
+            }.build()
+
 
     //API의 응답 결과를 로그로 확인하기 위해 별도로 HTTP body를 로깅함
     private fun httpLoggingIntercepter() =
