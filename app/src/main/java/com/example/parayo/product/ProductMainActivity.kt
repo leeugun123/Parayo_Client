@@ -22,7 +22,6 @@ class ProductMainActivity : BaseActivity<ProductMainViewModel>(){
         ui.viewpager.adapter = ProductListPageradapter(supportFragmentManager)
         ui.tablayout.setupWithViewPager(ui.viewpager)
 
-
         setupDrawerListener()
 
     }

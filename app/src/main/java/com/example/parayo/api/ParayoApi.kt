@@ -3,6 +3,7 @@ package com.example.parayo.api
 import com.example.parayo.api.request.ProductRegistrationRequest
 import com.example.parayo.api.response.ApiResponse
 import com.example.parayo.api.response.ProductImageUploadResponse
+import com.example.parayo.api.response.ProductListItemResponse
 import com.example.parayo.api.response.SigninResponse
 import com.example.parayo.request.SigninRequest
 import com.example.parayo.request.SignupRequest
@@ -34,6 +35,14 @@ interface ParayoApi {
     suspend fun registerProduct(
         @Body request: ProductRegistrationRequest
     ): ApiResponse<Response<Void>>
+
+    @GET("/api/v1/products")
+    suspend fun getProducts(
+        @Query("productId") productId: Long,
+        @Query("categoryId") category : Int,
+        @Query("direction") direction : String
+    ) : ApiResponse<List<ProductListItemResponse>>
+
 
     companion object{
 
