@@ -1,10 +1,7 @@
 package com.example.parayo.api
 
 import com.example.parayo.api.request.ProductRegistrationRequest
-import com.example.parayo.api.response.ApiResponse
-import com.example.parayo.api.response.ProductImageUploadResponse
-import com.example.parayo.api.response.ProductListItemResponse
-import com.example.parayo.api.response.SigninResponse
+import com.example.parayo.api.response.*
 import com.example.parayo.request.SigninRequest
 import com.example.parayo.request.SignupRequest
 import okhttp3.MultipartBody
@@ -42,6 +39,11 @@ interface ParayoApi {
         @Query("categoryId") category : Int,
         @Query("direction") direction : String
     ) : ApiResponse<List<ProductListItemResponse>>
+
+
+    @GET("/api/v1/products/{id}")
+    suspend fun getProduct(@Path("id") id : Long)
+        : ApiResponse<ProductResponse>
 
 
     companion object{

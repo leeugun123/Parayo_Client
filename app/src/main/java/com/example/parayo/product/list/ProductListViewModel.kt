@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Intent
 import androidx.paging.DataSource
 import com.example.parayo.api.response.ProductListItemResponse
+import com.example.parayo.product.detail.ProductDetailActivity
 import net.codephobia.ankomvvm.lifecycle.BaseViewModel
 import org.jetbrains.anko.error
 import java.lang.IllegalStateException
@@ -30,12 +31,14 @@ ProductListPagedAdapter.OnItemClickListener{
 
     override fun onClickProduct(productId: Long?) {
 
-        startActivity<ProductDetailActiviy>{
+        startActivity<ProductDetailActivity>{
             flags = Intent.FLAG_ACTIVITY_SINGLE_TOP
-            putExtra(ProductDetailActiviy.PRODUCT_ID,productId)
+            putExtra(ProductDetailActivity.PRODUCT_ID,productId)
         }
 
     }
+
+
 
 
 }
