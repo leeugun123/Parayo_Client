@@ -37,7 +37,8 @@ interface ParayoApi {
     suspend fun getProducts(
         @Query("productId") productId: Long,
         @Query("categoryId") category : Int,
-        @Query("direction") direction : String
+        @Query("direction") direction : String,
+        @Query("keyword") keyword : String? = null
     ) : ApiResponse<List<ProductListItemResponse>>
 
 

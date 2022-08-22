@@ -32,6 +32,7 @@
 
         <activity android:name=".product.registration.ProductRegistrationActivity" />
         <activity android:name=".product.detail.ProductDetailActivity" />
+        <activity android:name=".product.search.ProductSearchActivity" />
 
 
     </application>

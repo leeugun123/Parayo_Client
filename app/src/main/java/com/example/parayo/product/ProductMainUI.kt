@@ -23,6 +23,7 @@ import org.jetbrains.anko.design.floatingActionButton
 import org.jetbrains.anko.design.navigationView
 import org.jetbrains.anko.design.themedTabLayout
 import org.jetbrains.anko.sdk27.coroutines.onClick
+import org.jetbrains.anko.sdk27.coroutines.onQueryTextListener
 import org.jetbrains.anko.support.v4.drawerLayout
 import org.jetbrains.anko.support.v4.viewPager
 
@@ -52,6 +53,14 @@ class ProductMainUI(private val viewModel: ProductMainViewModel
                         background = borderBottom(width = dip(1))
                         menu.add("Search")
                             .setIcon(R.drawable.ic_baseline_search)
+                            .setActionView(searchView{
+                                onQueryTextListener {
+                                    onQueryTextSubmit { key ->
+                                        viewModel.openSearchActivity(key)
+                                        true
+                                    }
+                                }
+                            })
                             .setShowAsAction(SHOW_AS_ACTION_ALWAYS)
 
                     }.lparams(matchParent, wrapContent)
