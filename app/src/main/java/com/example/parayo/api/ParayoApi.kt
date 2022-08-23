@@ -47,6 +47,10 @@ interface ParayoApi {
         : ApiResponse<ProductResponse>
 
 
+    @PUT("/api/v1/users/fcm_token")
+    suspend fun updateFcmToken(fcmToken : String)
+        : ApiResponse<Response<Void>>
+
     companion object{
 
         //2

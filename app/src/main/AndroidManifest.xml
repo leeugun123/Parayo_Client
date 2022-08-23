@@ -35,6 +35,18 @@
         <activity android:name=".product.search.ProductSearchActivity" />
 
 
+
     </application>
+
+    <service android:name=".fcm.ParayoMessagingService"
+        android:exported="false"
+        tools:ignore="WrongManifestParent">
+
+        <intent-filter>
+            <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+        </intent-filter>
+
+    </service>
+
 
 </manifest>

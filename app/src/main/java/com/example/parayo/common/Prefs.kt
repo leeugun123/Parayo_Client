@@ -10,6 +10,7 @@ object Prefs {
     private const val REFRESH_TOKEN = "refresh_token"
     private const val USER_NAME = "user_name"
     private const val USER_ID = "user_id"
+    private const val FCM_TOKEN = "fcm_token"
 
     val prefs by lazy {
         PreferenceManager
@@ -39,4 +40,12 @@ object Prefs {
         set(value) = prefs.edit()
             .putLong(USER_ID,value)
             .apply()
+
+    var fcmToken
+        get() = prefs.getString(FCM_TOKEN,null)
+        set(value) = prefs.edit()
+            .putString(FCM_TOKEN,value)
+            .apply()
+
+
 }
