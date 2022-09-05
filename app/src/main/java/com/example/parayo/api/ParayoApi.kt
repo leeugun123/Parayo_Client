@@ -58,4 +58,14 @@ interface ParayoApi {
             .generate(ParayoApi::class.java)
 
     }
+
+    @GET("/api/v1/inquiries")
+    suspend fun getInquiries(
+        @Query("inquiryId") inquiryId: Long,
+        @Query("productId") productId: Long? = null,
+        @Query("requestUserId") requestUserId : Long? = null,
+        @Query("productOwnerId") productOwnerId: Long? = null,
+        @Query("direction") direction : String
+    ) : ApiResponse<List<InquiryResponse>>
+
 }
