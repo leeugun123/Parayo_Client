@@ -1,5 +1,6 @@
 package com.example.parayo.api
 
+import com.example.parayo.api.request.InquiryRequest
 import com.example.parayo.api.request.ProductRegistrationRequest
 import com.example.parayo.api.response.*
 import com.example.parayo.request.SigninRequest
@@ -67,5 +68,10 @@ interface ParayoApi {
         @Query("productOwnerId") productOwnerId: Long? = null,
         @Query("direction") direction : String
     ) : ApiResponse<List<InquiryResponse>>
+
+    @POST("/api/v1/inquiries")
+    suspend fun registerInquiry(
+        @Body request : InquiryRequest
+    ): ApiResponse<Response<Void>>
 
 }
